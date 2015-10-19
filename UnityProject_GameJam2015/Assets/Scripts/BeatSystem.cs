@@ -8,7 +8,7 @@ public class BeatSystem : MonoBehaviour{
     public static float beatRateMaster = 1;
     public static float beatRateCurrent = 0;
 
-    private static float beatSpeed = 1;
+    private static float beatSpeed = 2.1f;
 
     void Awake()
     {
