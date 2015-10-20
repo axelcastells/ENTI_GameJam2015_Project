@@ -5,6 +5,6 @@ public class startButton : MonoBehaviour {
 
     // When you click START the game starts
     void OnMouseDown()  {
-        Application.LoadLevel("Gameplay");
+        Application.LoadLevel(1);
     }
 }
