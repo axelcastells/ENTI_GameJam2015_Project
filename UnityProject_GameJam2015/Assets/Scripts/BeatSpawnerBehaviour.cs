@@ -4,6 +4,7 @@ using System.Collections;
 public class BeatSpawnerBehaviour : MonoBehaviour {
 
     public GameObject beatFrame;
+    public GameObject enemy;
 
     //private float lastTime = 0;
     private float timeAccumulator = 0;
@@ -32,6 +33,8 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
         {
             //Beat Now! Call your function.
             SpawnBeat();
+            if (Random.Range(0, 6) < 4) SpawnEnemy();
+
         }
         
     }
@@ -57,5 +60,10 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
         Instantiate(beatFrame, this.transform.position, Quaternion.identity);
 
         //lastSpawned.transform.parent = this.transform;
+    }
+
+    private void SpawnEnemy()
+    {
+        Instantiate(enemy, this.transform.position + new Vector3(0,1,0), Quaternion.identity);
     }
 }
