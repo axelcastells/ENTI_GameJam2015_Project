@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        //transform.Translate((float)BeatSystem.bps * Time.fixedDeltaTime, 0, 0);
 	}
 }
