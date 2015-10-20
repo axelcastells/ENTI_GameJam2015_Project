@@ -7,32 +7,59 @@ public class BeatSystem : MonoBehaviour{
     private AudioSource thisAudioSource;
 
     public int bpm;
+    public static double bps;
 
-    public static float beatRateMaster = 1;
-    public static float beatRateCurrent = 0;
+    public static float beatCounter = 0;
 
-    private static float beatSpeed = 0.518481123120817f;
+    private static float beatSpeed = 10;
+
+    public static bool beatNow = false;
 
     void Awake()
     {
         thisAudioSource = this.GetComponent<AudioSource>();
         thisAudioSource.clip = clip;
 
-        thisAudioSource.Play();
+        //Beats per second
+        bps = ((double)1 / ((double)bpm / (double)60));
 
-        beatSpeed = bpm / 60;
-        //Debug.Log("BPM: " + beatSpeed);
+        Debug.Log("BPS: " + bps);
+
+        StartBeatSystem();
+
     }
 
-    public static bool SetTheBeat()
+    void Start()
     {
-        if (beatRateCurrent >= beatRateMaster)
+
+    }
+
+    void FixedUpdate()
+    {
+
+        beatNow = SetTheBeat();
+        
+    }
+    
+    //Beat Now!
+    private static bool SetTheBeat()
+    {
+        beatCounter += Time.fixedDeltaTime;
+        //Debug.Log(beatCounter += Time.fixedDeltaTime);
+        
+        if (beatCounter > bps)
         {
-            beatRateCurrent = 0;
+            Debug.Log("Beat!");
+            beatCounter = 0;
             return true;
         }
         
-        beatRateCurrent += (beatSpeed * Time.deltaTime);
         return false;
+    }
+
+    public void StartBeatSystem()
+    {
+        thisAudioSource.Play();
+
     }
 }
