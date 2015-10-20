@@ -4,16 +4,24 @@ using System.Collections;
 public class BeatSystem : MonoBehaviour{
 
     public AudioClip clip;
+    private AudioSource thisAudioSource;
+
+    public int bpm;
 
     public static float beatRateMaster = 1;
     public static float beatRateCurrent = 0;
 
-    private static float beatSpeed = 2.1f;
+    private static float beatSpeed = 0.518481123120817f;
 
     void Awake()
     {
-        this.GetComponent<AudioSource>().clip = clip;
-        this.GetComponent<AudioSource>().Play();
+        thisAudioSource = this.GetComponent<AudioSource>();
+        thisAudioSource.clip = clip;
+
+        thisAudioSource.Play();
+
+        beatSpeed = bpm / 60;
+        //Debug.Log("BPM: " + beatSpeed);
     }
 
     public static bool SetTheBeat()
@@ -23,7 +31,7 @@ public class BeatSystem : MonoBehaviour{
             beatRateCurrent = 0;
             return true;
         }
-
+        
         beatRateCurrent += (beatSpeed * Time.deltaTime);
         return false;
     }

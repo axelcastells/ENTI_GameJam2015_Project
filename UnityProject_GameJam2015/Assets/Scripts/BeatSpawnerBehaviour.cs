@@ -7,7 +7,7 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
     public GameObject player;
 
 
-    private float constantSpeed = 1;
+    private float constantSpeed = 4;
 	// Use this for initialization
 	void Start () {
 	    
