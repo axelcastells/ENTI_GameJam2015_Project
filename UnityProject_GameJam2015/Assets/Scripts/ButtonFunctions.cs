@@ -36,10 +36,10 @@ public class ButtonFunctions : MonoBehaviour {
                 {
                     Application.LoadLevel(1);
                 }
-                //else if(hit.transform.tag == "RestartButton")
-                //{
-                //    Application.LoadLevel(0);
-                //}
+                else if(hit.transform.tag == "BackButton")
+                {
+                    Application.LoadLevel(0);
+                }
                 //else if (hit.transform.tag == "ConfigButton")
                 //{
                 //    options.active = !options.active;

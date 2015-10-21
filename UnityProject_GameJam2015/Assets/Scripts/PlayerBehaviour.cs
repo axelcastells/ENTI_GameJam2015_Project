@@ -27,7 +27,7 @@ public class PlayerBehaviour : MonoBehaviour {
         playerState = PlayerState.WAIT;
 
         scoreText.text = "BEAT!\n" + score;
-        hiScoreText.text = "HiScore!\n" + PlayerPrefs.GetInt("HiScore");
+        hiScoreText.text = "Hi-Score!\n" + PlayerPrefs.GetInt("HiScore");
 	}
 	
 	// Update is called once per frame
@@ -80,7 +80,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void SetScores()
     {
-        hiScoreText.text = "HiScore!\n" + PlayerPrefs.GetInt("HiScore");
+        hiScoreText.text = "Hi-Score!\n" + PlayerPrefs.GetInt("HiScore");
         hiScoreTextGameOver.text = hiScoreText.text;
 
         scoreTextGameOver.text = "Your Score!\n" + score.ToString();
@@ -112,7 +112,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     private void DetectBeatSpawned(Collider aux)
     {
-        if(aux.transform.tag == "Beat1Touch")
+        if (aux.transform.tag == "Beat1Touch")
         {
             if (Input.touchCount == 1 || Input.GetKey(KeyCode.A))
             {
@@ -121,7 +121,7 @@ public class PlayerBehaviour : MonoBehaviour {
             else
                 failedOnBeat = true;
         }
-        else if(aux.transform.tag == "Beat2Touches")
+        else if (aux.transform.tag == "Beat2Touches")
         {
             if (Input.touchCount == 2 || Input.GetKey(KeyCode.S))
             {
@@ -130,14 +130,22 @@ public class PlayerBehaviour : MonoBehaviour {
             else
                 failedOnBeat = true;
         }
-        else if(aux.transform.tag == "BeatNoTouch")
+        else if (aux.transform.tag == "BeatNoTouch")
         {
-            if(Input.touchCount == 0 || Input.GetKey(KeyCode.D))
+            if (Input.touchCount == 0 || Input.GetKey(KeyCode.D))
             {
                 failedOnBeat = false;
             }
             else
                 failedOnBeat = true;
+        }
+
+        //If player touch out of the beat he lose
+
+        else if (Input.touchCount != 0)
+        {
+            failedOnBeat = true;
+
         }
     }
 }
