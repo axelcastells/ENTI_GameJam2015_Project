@@ -6,6 +6,8 @@ public class PlayerBehaviour : MonoBehaviour {
     private enum PlayerState { WAIT, ALIVE, DEAD }
     private PlayerState playerState;
 
+    public int beatsToWait;
+
     private double counter = 0;
 	// Use this for initialization
 	void Start () {
@@ -22,7 +24,7 @@ public class PlayerBehaviour : MonoBehaviour {
                     if (BeatSystem.beatNow == true)
                         counter++;
 
-                    if (counter == 3)
+                    if (counter == beatsToWait)
                         playerState = PlayerState.ALIVE;
                 }
                 break;

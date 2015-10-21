@@ -51,6 +51,9 @@ public class BeatSystem : MonoBehaviour{
         {
             Debug.Log("Beat!");
             beatCounter = 0;
+
+            if(FreezeTheBeat() == true)
+
             return true;
         }
         
@@ -61,5 +64,14 @@ public class BeatSystem : MonoBehaviour{
     {
         thisAudioSource.Play();
 
+    }
+
+    public static bool FreezeTheBeat()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            return true;
+
+        else
+            return false;
     }
 }
