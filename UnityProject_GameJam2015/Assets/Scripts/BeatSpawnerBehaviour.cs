@@ -3,8 +3,10 @@ using System.Collections;
 
 public class BeatSpawnerBehaviour : MonoBehaviour {
 
-    public GameObject beatFrame;
-    public GameObject enemy;
+    public GameObject beat1Touch;
+    public GameObject beat2Touches;
+    public GameObject beatNoTouch;
+    //public GameObject enemy;
 
     //private float lastTime = 0;
     private float timeAccumulator = 0;
@@ -28,13 +30,12 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
             //Debug.Log("beat");
             timeAccumulator = 0;
         }*/
-        transform.Translate(new Vector3((float)BeatSystem.bps*15 * Time.fixedDeltaTime, 0, 0));
+        transform.Translate(new Vector3(BeatSystem.speed * Time.fixedDeltaTime, 0, 0));
 
         if (BeatSystem.beatNow == true)
         {
             //Beat Now! Call your function.
             SpawnBeat();
-            if (Random.Range(0, 6) < 4) SpawnEnemy();
 
         }
         
@@ -58,13 +59,32 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
 
         lastSpawned.transform.tag = "Destroyable";
         */
-        Instantiate(beatFrame, this.transform.position, Quaternion.identity);
+        int aux;
+        aux = Random.Range(0, 3);
+
+        if(aux == 0)
+        {
+            Instantiate(beat1Touch, this.transform.position, Quaternion.identity);
+        }
+
+        else if (aux == 1)
+        {
+            Instantiate(beat2Touches, this.transform.position, Quaternion.identity);
+        }
+
+        else
+        {
+            Instantiate(beatNoTouch, this.transform.position, Quaternion.identity);
+        }
+
+        //Instantiate(beatFrame, this.transform.position, Quaternion.identity);
 
         //lastSpawned.transform.parent = this.transform;
     }
-
+    /*
     private void SpawnEnemy()
     {
         Instantiate(enemy, this.transform.position + new Vector3(0,1,0), Quaternion.identity);
     }
+    */
 }

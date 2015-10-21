@@ -7,7 +7,14 @@ public class ButtonFunctions : MonoBehaviour {
     private RaycastHit hit;
     private Ray ray;
 
+    public TextMesh hiScore;
+
     public GameObject options;
+
+    void Start()
+    {
+        hiScore.text = "Hi-Score !\n" + PlayerPrefs.GetInt("HiScore");
+    }
 
     void Update()
     {
@@ -25,7 +32,7 @@ public class ButtonFunctions : MonoBehaviour {
                 }
                 else if(hit.transform.tag == "StartButton")
                 {
-                    Application.LoadLevel(2);
+                    Application.LoadLevel(1);
                 }
                 else if(hit.transform.tag == "ConfigButton")
                 {

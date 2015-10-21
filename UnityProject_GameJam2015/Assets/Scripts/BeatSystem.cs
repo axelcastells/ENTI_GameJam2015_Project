@@ -13,6 +13,9 @@ public class BeatSystem : MonoBehaviour{
 
     private static float beatSpeed = 10;
 
+    public static float speed;
+    //public float speedAux;
+
     public static bool beatNow = false;
 
     void Awake()
@@ -22,6 +25,8 @@ public class BeatSystem : MonoBehaviour{
 
         //Beats per second
         bps = ((double)1 / ((double)bpm / (double)60));
+
+        speed = CrossMultiply(bpm, 120, 240, 15, 30);
 
         Debug.Log("BPS: " + bps);
 
@@ -52,8 +57,6 @@ public class BeatSystem : MonoBehaviour{
             Debug.Log("Beat!");
             beatCounter = 0;
 
-            if(FreezeTheBeat() == true)
-
             return true;
         }
         
@@ -66,12 +69,9 @@ public class BeatSystem : MonoBehaviour{
 
     }
 
-    public static bool FreezeTheBeat()
+    public static float CrossMultiply(float value, float inMin, float inMax, float outMin, float outMax)
     {
-        if (Input.GetKey(KeyCode.Space))
-            return true;
 
-        else
-            return false;
+        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
     }
 }
