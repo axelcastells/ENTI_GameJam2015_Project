@@ -25,7 +25,7 @@ public class ButtonFunctions : MonoBehaviour {
                 }
                 else if(hit.transform.tag == "StartButton")
                 {
-                    Application.LoadLevel(1);
+                    Application.LoadLevel(2);
                 }
                 else if(hit.transform.tag == "ConfigButton")
                 {

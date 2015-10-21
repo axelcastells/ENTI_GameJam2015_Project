@@ -4,7 +4,7 @@ using System.Collections;
 public class BeatSystem : MonoBehaviour{
 
     public AudioClip clip;
-    private AudioSource thisAudioSource;
+    private static AudioSource thisAudioSource;
 
     public int bpm;
     public static double bps;

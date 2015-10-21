@@ -28,7 +28,8 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
             //Debug.Log("beat");
             timeAccumulator = 0;
         }*/
-        
+        transform.Translate(new Vector3((float)BeatSystem.bps*15 * Time.fixedDeltaTime, 0, 0));
+
         if (BeatSystem.beatNow == true)
         {
             //Beat Now! Call your function.
@@ -41,7 +42,7 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        transform.Translate(new Vector3(constantSpeed*Time.deltaTime, 0, 0));
+
 	}
 
     private void SpawnBeat()
