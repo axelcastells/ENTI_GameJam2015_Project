@@ -9,7 +9,7 @@ public class ButtonFunctions : MonoBehaviour {
 
     public TextMesh hiScore;
 
-    public GameObject options;
+    //public GameObject options;
 
     void Start()
     {
@@ -29,15 +29,16 @@ public class ButtonFunctions : MonoBehaviour {
                 if(hit.transform.tag == "ExitButton")
                 {
                     Application.Quit();
+                    Debug.Log("Quit!");
                 }
                 else if(hit.transform.tag == "StartButton")
                 {
                     Application.LoadLevel(1);
                 }
-                else if(hit.transform.tag == "ConfigButton")
-                {
-                    options.active = !options.active;
-                }
+                //else if (hit.transform.tag == "ConfigButton")
+                //{
+                //    options.active = !options.active;
+                //}
             }
         }
     }
