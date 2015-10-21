@@ -22,29 +22,27 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
 	
     void FixedUpdate()
     {
-        /*
-        timeAccumulator += Time.fixedDeltaTime;
-        
-        if (timeAccumulator > 0.47619)
+        if (BeatSystem.pause == false)
         {
-            //Debug.Log("beat");
-            timeAccumulator = 0;
-        }*/
-        transform.Translate(new Vector3(BeatSystem.speed * Time.fixedDeltaTime, 0, 0));
+            /*
+            timeAccumulator += Time.fixedDeltaTime;
 
-        if (BeatSystem.beatNow == true)
-        {
-            //Beat Now! Call your function.
-            SpawnBeat();
+            if (timeAccumulator > 0.47619)
+            {
+                //Debug.Log("beat");
+                timeAccumulator = 0;
+            }*/
+            transform.Translate(new Vector3(BeatSystem.speed * Time.fixedDeltaTime, 0, 0));
 
+            if (BeatSystem.beatNow == true)
+            {
+                //Beat Now! Call your function.
+                SpawnBeat();
+
+            }
         }
         
     }
-	// Update is called once per frame
-	void Update () {
-
-
-	}
 
     private void SpawnBeat()
     {

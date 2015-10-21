@@ -8,12 +8,16 @@ public class PlayerBehaviour : MonoBehaviour {
 
     public int beatsToWait;
     public TextMesh scoreText;
+    public TextMesh scoreTextGameOver;
     public TextMesh hiScoreText;
+    public TextMesh hiScoreTextGameOver;
     public TextMesh startText;
 
     private int score = 0;
 
     private bool failedOnBeat = true;
+
+    public GameObject gameOver;
 
 	// Use this for initialization
 	void Start () {
@@ -56,12 +60,15 @@ public class PlayerBehaviour : MonoBehaviour {
                 break;
             case PlayerState.DEAD:
                 {
+
                     if (PlayerPrefs.GetInt("HiScore") < score)
                     {
                         PlayerPrefs.SetInt("HiScore", score);
                     }
 
-                    hiScoreText.text = "HiScore!\n" + PlayerPrefs.GetInt("HiScore");
+                    SetScores();
+
+                    if (BeatSystem.pause == false) BeatSystem.TogglePause(gameOver);
                 }
                 break;
             default:
@@ -69,6 +76,14 @@ public class PlayerBehaviour : MonoBehaviour {
         }
          //transform.Translate((float)BeatSystem.bps * Time.fixedDeltaTime, 0, 0);
 
+    }
+
+    private void SetScores()
+    {
+        hiScoreText.text = "HiScore!\n" + PlayerPrefs.GetInt("HiScore");
+        hiScoreTextGameOver.text = hiScoreText.text;
+
+        scoreTextGameOver.text = "Your Score!\n" + score.ToString();
     }
 
     void OnTriggerStay(Collider other)

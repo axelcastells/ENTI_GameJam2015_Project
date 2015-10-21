@@ -48,15 +48,19 @@ public class EasingAnimator : MonoBehaviour
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (startEasing == true)
+        if (BeatSystem.pause == false)
         {
-            EasingsUpdate();
-            
-            if (BeatSystem.beatNow == true)
-                Restart();
-                
+            if (startEasing == true)
+            {
+                EasingsUpdate();
+
+                if (BeatSystem.beatNow == true)
+                    Restart();
+
+            }
+
+            else { }
         }
-        else { }		
 	}
 
     //Call this function on OnClick() Event in the UI Button.

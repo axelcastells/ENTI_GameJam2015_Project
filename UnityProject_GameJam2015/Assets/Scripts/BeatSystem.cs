@@ -6,6 +6,8 @@ public class BeatSystem : MonoBehaviour{
     public AudioClip clip;
     private static AudioSource thisAudioSource;
 
+    public static bool pause = false;
+
     public int bpm;
     public static double bps;
 
@@ -20,6 +22,8 @@ public class BeatSystem : MonoBehaviour{
 
     void Awake()
     {
+        pause = false;
+
         thisAudioSource = this.GetComponent<AudioSource>();
         thisAudioSource.clip = clip;
 
@@ -41,8 +45,8 @@ public class BeatSystem : MonoBehaviour{
 
     void FixedUpdate()
     {
-
-        beatNow = SetTheBeat();
+        if(pause == false)
+            beatNow = SetTheBeat();
         
     }
     
@@ -68,6 +72,24 @@ public class BeatSystem : MonoBehaviour{
         thisAudioSource.Play();
         beatCounter = 0;
 
+    }
+
+    //Activates and Deactivates a GameObject
+    public static void TogglePause(GameObject pauseMenu)
+    {
+        if(pause == false)
+        {
+            thisAudioSource.Pause();
+            pauseMenu.SetActive(true);
+        }
+
+        else if(pause == true)
+        {
+            thisAudioSource.Play();
+            pauseMenu.SetActive(false);
+        }
+
+        pause = !pause;
     }
 
     public static float CrossMultiply(float value, float inMin, float inMax, float outMin, float outMax)

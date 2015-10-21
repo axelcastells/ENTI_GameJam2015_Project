@@ -4,6 +4,7 @@ using System.Collections;
 public class ButtonFunctions : MonoBehaviour {
 
     // When you click START the game starts
+
     private RaycastHit hit;
     private Ray ray;
 
@@ -13,7 +14,7 @@ public class ButtonFunctions : MonoBehaviour {
 
     void Start()
     {
-        hiScore.text = "Hi-Score !\n" + PlayerPrefs.GetInt("HiScore");
+        if(hiScore != null) hiScore.text = "Hi-Score !\n" + PlayerPrefs.GetInt("HiScore");
     }
 
     void Update()
@@ -35,6 +36,10 @@ public class ButtonFunctions : MonoBehaviour {
                 {
                     Application.LoadLevel(1);
                 }
+                //else if(hit.transform.tag == "RestartButton")
+                //{
+                //    Application.LoadLevel(0);
+                //}
                 //else if (hit.transform.tag == "ConfigButton")
                 //{
                 //    options.active = !options.active;
