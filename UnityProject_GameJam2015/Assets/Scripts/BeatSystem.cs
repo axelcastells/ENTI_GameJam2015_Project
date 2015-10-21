@@ -66,6 +66,7 @@ public class BeatSystem : MonoBehaviour{
     public void StartBeatSystem()
     {
         thisAudioSource.Play();
+        beatCounter = 0;
 
     }
 

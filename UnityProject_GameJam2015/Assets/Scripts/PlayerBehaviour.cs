@@ -9,15 +9,16 @@ public class PlayerBehaviour : MonoBehaviour {
     public int beatsToWait;
     public TextMesh scoreText;
     public TextMesh hiScoreText;
+    public TextMesh startText;
 
     private int score = 0;
 
     private bool failedOnBeat = true;
 
-    private double counter = 0;
 	// Use this for initialization
 	void Start () {
-            
+
+        startText.text = (--beatsToWait).ToString();
 
         playerState = PlayerState.WAIT;
 
@@ -33,15 +34,21 @@ public class PlayerBehaviour : MonoBehaviour {
             case PlayerState.WAIT:
                 {
                     if (BeatSystem.beatNow == true)
-                        counter++;
-
-                    if (counter == beatsToWait && BeatSystem.beatNow == true)
+                    {
+                        startText.text = (--beatsToWait).ToString();
+                    }
+                    if (beatsToWait == 0 && BeatSystem.beatNow == true)
+                    {
                         playerState = PlayerState.ALIVE;
+                        startText.text = "GO!";
+                    }
                 }
                 break;
             case PlayerState.ALIVE:
                 {
-                    
+                    if(BeatSystem.beatNow == true && startText.gameObject.activeSelf == true)
+                        startText.gameObject.SetActive(false);
+
                     this.transform.Translate(BeatSystem.speed * Time.fixedDeltaTime, 0, 0);
 
                     //if()
@@ -92,10 +99,12 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         if(aux.transform.tag == "Beat1Touch")
         {
-            if(Input.touchCount == 1 || Input.GetKey(KeyCode.A))
+            if (Input.touchCount == 1 || Input.GetKey(KeyCode.A))
             {
                 failedOnBeat = false;
             }
+            else
+                failedOnBeat = true;
         }
         else if(aux.transform.tag == "Beat2Touches")
         {
@@ -103,13 +112,17 @@ public class PlayerBehaviour : MonoBehaviour {
             {
                 failedOnBeat = false;
             }
+            else
+                failedOnBeat = true;
         }
         else if(aux.transform.tag == "BeatNoTouch")
         {
-            if(/*Input.touchCount == 0*/Input.GetKey(KeyCode.D))
+            if(Input.touchCount == 0 || Input.GetKey(KeyCode.D))
             {
                 failedOnBeat = false;
             }
+            else
+                failedOnBeat = true;
         }
     }
 }
