@@ -30,7 +30,7 @@ public class BeatSystem : MonoBehaviour{
         //Beats per second
         bps = ((double)1 / ((double)bpm / (double)60));
 
-        speed = CrossMultiply(bpm, 120, 240, 15, 30);
+        speed = CrossMultiply(bpm, 100, 240, 10, 30);
 
         Debug.Log("BPS: " + bps);
 
@@ -40,7 +40,7 @@ public class BeatSystem : MonoBehaviour{
 
     void Start()
     {
-
+        StartBeatSystem();
     }
 
     void FixedUpdate()

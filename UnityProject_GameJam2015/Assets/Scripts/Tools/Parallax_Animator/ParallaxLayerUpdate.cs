@@ -4,7 +4,7 @@ using System.Collections;
 public class ParallaxLayerUpdate : MonoBehaviour {
 
     public float movementSpeed;
-    public float movementSpeedAux;
+    private float movementSpeedAux;
 
     private Transform player;
 
@@ -21,7 +21,7 @@ public class ParallaxLayerUpdate : MonoBehaviour {
     {
         if (BeatSystem.pause == false)
         {
-            movementSpeedAux = movementSpeed * BeatSystem.CrossMultiply(BeatSystem.speed, 15, 30, 0, 1);
+            movementSpeedAux = movementSpeed * BeatSystem.CrossMultiply(BeatSystem.speed, 15, 30, 0.1f, 1);
             animatedOffset += new Vector2(0, movementSpeedAux) * Time.deltaTime;
         
 
