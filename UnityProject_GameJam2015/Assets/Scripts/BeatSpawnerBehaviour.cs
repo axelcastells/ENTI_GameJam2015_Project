@@ -63,16 +63,19 @@ public class BeatSpawnerBehaviour : MonoBehaviour {
         if(aux == 0)
         {
             Instantiate(beat1Touch, this.transform.position, Quaternion.identity);
+            //Destroy(Instantiate(beat1Touch, this.transform.position, Quaternion.identity), 6 * Time.fixedTime);
         }
 
         else if (aux == 1)
         {
             Instantiate(beat2Touches, this.transform.position, Quaternion.identity);
+            //Destroy(Instantiate(beat2Touches, this.transform.position, Quaternion.identity), 6 * Time.fixedTime);
         }
 
         else
         {
             Instantiate(beatNoTouch, this.transform.position, Quaternion.identity);
+            //Destroy(Instantiate(beatNoTouch, this.transform.position, Quaternion.identity), 6 * Time.fixedTime);
         }
 
         //Instantiate(beatFrame, this.transform.position, Quaternion.identity);
