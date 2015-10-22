@@ -180,7 +180,7 @@ public class PlayerBehaviour : MonoBehaviour {
     {
         if (aux.transform.tag == "Beat1Touch")
         {
-            if (Input.touchCount == 1 || Input.GetKey(KeyCode.A))
+            if ((Input.touchCount == 1 && Input.touchCount < 2) || Input.GetKey(KeyCode.A))
             {
                 failedOnBeat = false;
                 Destroy(aux.gameObject);
