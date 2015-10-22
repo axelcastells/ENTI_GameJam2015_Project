@@ -8,17 +8,28 @@ public class ButtonFunctions : MonoBehaviour {
     private RaycastHit hit;
     private Ray ray;
 
+    public GameObject tutorialPopup;
+
     public TextMesh hiScore;
 
     //public GameObject options;
 
     void Start()
     {
-        if(hiScore != null) hiScore.text = "Hi-Score !\n" + PlayerPrefs.GetInt("HiScore");
+        if (hiScore != null) hiScore.text = "Hi-Score !\n" + PlayerPrefs.GetInt("HiScore");
+
+
     }
 
     void Update()
     {
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            if (Application.loadedLevel == 1) Application.LoadLevel(0);
+            else if (Application.loadedLevel == 0) Application.Quit();
+        }
+
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -34,11 +45,22 @@ public class ButtonFunctions : MonoBehaviour {
                 }
                 else if(hit.transform.tag == "StartButton")
                 {
-                    Application.LoadLevel(1);
+                    if (PlayerPrefs.GetInt("PlayFirstTime") == 0)
+                    {
+                        PlayerPrefs.SetInt("PlayFirstTime", 1);
+                        tutorialPopup.SetActive(true);
+                    }
+                    else if (PlayerPrefs.GetInt("PlayFirstTime") == 1)
+                        Application.LoadLevel(1);
                 }
                 else if(hit.transform.tag == "BackButton")
                 {
                     Application.LoadLevel(0);
+                }
+
+                else if (hit.transform.tag == "TutorialButton")
+                {
+                    tutorialPopup.active = !tutorialPopup.active;
                 }
                 //else if (hit.transform.tag == "ConfigButton")
                 //{

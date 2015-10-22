@@ -42,7 +42,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
         SetSilver();
     }
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
 
